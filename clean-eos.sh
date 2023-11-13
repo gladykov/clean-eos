@@ -27,3 +27,9 @@ if type npm &> /dev/null; then
   echo "Cleaning npm cache"
   npm cache clean --force
 fi
+
+# Clean spotify cache
+if [ -e ~/.cache/spotify ]; then
+  echo "Cleaning Spotify cache"
+  rm -r ~/.cache/spotify/Data/*
+fi
