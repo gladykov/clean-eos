@@ -14,3 +14,10 @@ if type go &> /dev/null; then
   go clean -fuzzcache
   go clean -modcache
 fi
+
+# Clean rust cache
+# https://github.com/rust-lang/cargo/issues/3289#issuecomment-1086844583
+if [ -e ~/.cargo/registry ]; then
+  echo "Cleaning Rust cache"
+  rm -r ~/.cargo/registry/{cache,src}
+fi
