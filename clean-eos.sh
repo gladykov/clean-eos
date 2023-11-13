@@ -21,3 +21,9 @@ if [ -e ~/.cargo/registry ]; then
   echo "Cleaning Rust cache"
   rm -r ~/.cargo/registry/{cache,src}
 fi
+
+# Clean npm cache
+if type npm &> /dev/null; then
+  echo "Cleaning npm cache"
+  npm cache clean --force
+fi
