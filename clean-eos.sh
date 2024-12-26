@@ -29,7 +29,25 @@ if type npm &> /dev/null; then
 fi
 
 # Clean spotify cache
-if [ -e ~/.cache/spotify ]; then
+if [ "$(ls -A ~/.cache/spotify/Data)" ]; then
   echo "Cleaning Spotify cache"
   rm -r ~/.cache/spotify/Data/*
+fi
+
+# Clean yarn cache
+if [ -e ~/.cache/yarn ]; then
+  echo "Cleaning Yarn cache"
+  yarn cache clean
+fi
+
+# Clear pnpm store
+if [ -e ~/.local/share/pnpm ]; then
+  echo "Cleaning pnpm store"
+  pnpm store prune
+fi
+
+# Clear coredumps
+if [ "$(ls -A /var/lib/systemd/coredump/)" ]; then
+  echo "Cleaning coredumps"
+  sudo rm /var/lib/systemd/coredump/*
 fi
