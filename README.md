@@ -9,7 +9,10 @@ Right now cleans:
 * go cache
 * rust cache
 * npm cache
+* yarn cache
+* pnpm cache
 * spotify cache
+* coredumps
 
 To run: Download clean-eos.sh , open terminal and run:
 ```
