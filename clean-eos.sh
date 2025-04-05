@@ -1,10 +1,10 @@
-# Remove orphaned stuff
+# Remove orphaned packages
 paru -Sccd
 
 # Remove more orphaned packages
 sudo pacman -Qtdq | sudo pacman -Rns -
 
-# Remove uninstalled packages in cache
+# Remove uninstalled packages from cache
 sudo paccache -ruk0
 
 # Clean go cache
@@ -19,7 +19,7 @@ fi
 # https://github.com/rust-lang/cargo/issues/3289#issuecomment-1086844583
 if [ -e ~/.cargo/registry ]; then
   echo "Cleaning Rust cache"
-  rm -r ~/.cargo/registry/{cache,src}
+  rm -r ~/.cargo/registry/{cache,src} &> /dev/null
 fi
 
 # Clean npm cache
@@ -29,7 +29,7 @@ if type npm &> /dev/null; then
 fi
 
 # Clean spotify cache
-if [[ "$(ls -A ~/.cache/spotify/Data/ &> /dev/null)" || $? -eq 0 ]]; then
+if [[ -e ~/.cache/spotify/Data/ && -n "$(ls -A ~/.cache/spotify/Data/)" ]]; then
   echo "Cleaning Spotify cache"
   rm -r ~/.cache/spotify/Data/*
 fi
@@ -47,7 +47,7 @@ if [ -e ~/.local/share/pnpm ]; then
 fi
 
 # Clear coredumps
-if [[ "$(ls -A /var/lib/systemd/coredump/ &> /dev/null)" || $? -eq 0 ]]; then
+if [[ -e /var/lib/systemd/coredump/ && -n "$(ls -A /var/lib/systemd/coredump/)" ]]; then
   echo "Cleaning coredumps"
   sudo rm /var/lib/systemd/coredump/*
 fi
@@ -58,8 +58,7 @@ sudo journalctl --rotate
 sudo journalctl --vacuum-time=1s
 
 # Clear docker
-if [[ "$(docker --version &> /dev/null)" || $? -eq 0 ]]; then
+if type docker &> /dev/null; then
   echo "Cleaning dangling docker images and volumes (without used images)"
   docker system prune --force --volumes
 fi
-
