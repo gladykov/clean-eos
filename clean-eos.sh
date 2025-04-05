@@ -51,3 +51,8 @@ if [ "$(ls -A /var/lib/systemd/coredump/)" ]; then
   echo "Cleaning coredumps"
   sudo rm /var/lib/systemd/coredump/*
 fi
+
+# Clear journalctl
+echo "Cleaning all journalctl entries"
+sudo journalctl --rotate
+sudo journalctl --vacuum-time=1s
