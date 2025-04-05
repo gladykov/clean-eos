@@ -19,3 +19,11 @@ To run: Download clean-eos.sh , open terminal and run:
 chmod +x clean-eos.sh
 ./clean-eos.sh
 ```
+
+## Useful commands
+
+To see what else eats your disk:
+`pacman -Qmq | xargs expac -t '%Y-%m-%d' '%b %m %n' | sort | column -tN "Date,Size,Name"`
+
+To see what eats your disk:
+use program filelight
