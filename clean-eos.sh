@@ -1,7 +1,7 @@
-# Remove more orphaned stuff
+# Remove orphaned stuff
 paru -Sccd
 
-# Remove orphaned packages
+# Remove more orphaned packages
 sudo pacman -Qtdq | sudo pacman -Rns -
 
 # Remove uninstalled packages in cache
@@ -56,3 +56,9 @@ fi
 echo "Cleaning all journalctl entries"
 sudo journalctl --rotate
 sudo journalctl --vacuum-time=1s
+
+# Clear docker
+if [ "$(docker --version)" ]; then
+  echo "Cleaning dangling docker images and volumes (without used images)"
+  docker system prune --force --volumes
+fi
