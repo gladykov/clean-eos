@@ -14,6 +14,7 @@ Right now cleans:
 * spotify cache
 * coredumps
 * journalctl (active and archived)
+* docker (dangling docker images and volumes (without used images))
 
 To run: Download clean-eos.sh , open terminal and run:
 ```
