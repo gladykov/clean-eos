@@ -29,7 +29,7 @@ if type npm &> /dev/null; then
 fi
 
 # Clean spotify cache
-if [ "$(ls -A ~/.cache/spotify/Data)" ]; then
+if [[ "$(ls -A ~/.cache/spotify/Data/ &> /dev/null)" || $? -eq 0 ]]; then
   echo "Cleaning Spotify cache"
   rm -r ~/.cache/spotify/Data/*
 fi
@@ -47,7 +47,7 @@ if [ -e ~/.local/share/pnpm ]; then
 fi
 
 # Clear coredumps
-if [ "$(ls -A /var/lib/systemd/coredump/)" ]; then
+if [[ "$(ls -A /var/lib/systemd/coredump/ &> /dev/null)" || $? -eq 0 ]]; then
   echo "Cleaning coredumps"
   sudo rm /var/lib/systemd/coredump/*
 fi
