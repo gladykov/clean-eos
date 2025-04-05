@@ -13,6 +13,7 @@ Right now cleans:
 * pnpm cache
 * spotify cache
 * coredumps
+* journalctl (active and archived)
 
 To run: Download clean-eos.sh , open terminal and run:
 ```
