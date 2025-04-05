@@ -58,7 +58,8 @@ sudo journalctl --rotate
 sudo journalctl --vacuum-time=1s
 
 # Clear docker
-if [ "$(docker --version)" ]; then
+if [[ "$(docker --version &> /dev/null)" || $? -eq 0 ]]; then
   echo "Cleaning dangling docker images and volumes (without used images)"
   docker system prune --force --volumes
 fi
+
