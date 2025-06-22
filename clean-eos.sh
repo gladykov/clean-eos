@@ -62,3 +62,8 @@ if type docker &> /dev/null; then
   echo "Cleaning dangling docker images and volumes (without used images)"
   docker system prune --force --volumes
 fi
+
+# Empty trash
+echo "Cleaning trash"
+gio trash --empty
+
