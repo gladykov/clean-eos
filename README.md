@@ -15,6 +15,7 @@ Right now cleans:
 * coredumps
 * journalctl (active and archived)
 * docker (dangling docker images and volumes (without used images))
+* empty trash
 
 To run: Download clean-eos.sh , open terminal and run:
 ```
